@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_ATLAS_PW": "adessoTurkey",
+    "JWT_KEY": "secret_JWT_key_for_mean_task_project"
+  }
+}

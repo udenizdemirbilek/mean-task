@@ -1,0 +1,10 @@
+<h1>Task List</h1>
+<ul>
+  <li *ngFor="let task of tasks">
+    Title: {{ task.title }} <br />
+    Description: {{ task.description }} <br />
+    Status: {{ task.status }} <br />
+    Created: {{ task.createdAt }}
+    <hr />
+  </li>
+</ul>
