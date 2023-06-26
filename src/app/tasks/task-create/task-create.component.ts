@@ -12,6 +12,7 @@ export class TaskCreateComponent implements OnInit {
   taskForm: FormGroup;
   taskId: string;
   isEditMode: boolean = false;
+  isLoading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,8 +30,10 @@ export class TaskCreateComponent implements OnInit {
     this.taskId = this.route.snapshot.paramMap.get('postId');
     if (this.taskId) {
       this.isEditMode = true;
+      this.isLoading = true;
       this.taskService.getTaskById(this.taskId).subscribe(
         (task) => {
+          this.isLoading = false;
           this.taskForm.patchValue(task);
         },
         (error) => {

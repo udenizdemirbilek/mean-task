@@ -10,8 +10,9 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  getTasks(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getTasks(postPerPage: number, currentPage: number): Observable<any> {
+    const queryParams = `?pagesize=${postPerPage}&page=${currentPage}`;
+    return this.http.get<any>(this.apiUrl + queryParams);
   }
 
   getTaskById(id: string): Observable<any> {

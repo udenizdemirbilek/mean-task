@@ -2,8 +2,14 @@ const Task = require("../models/task");
 
 // Get all tasks
 exports.getAllTasks = async (req, res) => {
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const taskQuery = Task.find();
+  if (pageSize && currentPage) {
+    taskQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+  }
   try {
-    const tasks = await Task.find({});
+    const tasks = await taskQuery;
     res.status(200).json(tasks);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });

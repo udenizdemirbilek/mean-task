@@ -1,6 +1,7 @@
 mat-card {
   width: 80%;
   margin: auto;
+  padding: 1em;
 }
 
 mat-form-field,
@@ -12,15 +13,6 @@ mat-spinner {
   margin: auto;
 }
 
-input[type="file"] {
-  visibility: hidden;
-}
-
-.image-preview {
-  height: 5rem;
-  margin: 1rem 0;
-}
-
-.image-preview img {
-  height: 100%;
+h2 {
+  text-align: center;
 }

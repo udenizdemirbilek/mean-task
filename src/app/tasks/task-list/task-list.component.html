@@ -1,10 +1,25 @@
-<h1>Task List</h1>
-<ul>
-  <li *ngFor="let task of tasks">
-    Title: {{ task.title }} <br />
-    Description: {{ task.description }} <br />
-    Status: {{ task.status }} <br />
-    Created: {{ task.createdAt }}
-    <hr />
-  </li>
-</ul>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="tasks.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let task of tasks">
+    <mat-expansion-panel-header> {{ task.title }} </mat-expansion-panel-header>
+    <p>{{ task.description }}</p>
+    <p>{{ task.status }}</p>
+    <p>{{ task.createdAt }}</p>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/edit', task._id]">Edit</a>
+      <button mat-button color="warn" (click)="onDelete(task._id)">
+        Delete
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+  <mat-paginator
+    [length]="totalTasks"
+    [pageSize]="tasksPerPage"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onChangedPage($event)"
+    *ngIf="tasks.length > 0"
+  ></mat-paginator>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="tasks.length <= 0 && !isLoading">
+  No Posts Added Yet
+</p>
