@@ -10,7 +10,12 @@ exports.getAllTasks = async (req, res) => {
   }
   try {
     const tasks = await taskQuery;
-    res.status(200).json(tasks);
+    const count = await Task.count();
+    res.status(200).json({
+      message: "Tasks fetched successfully!",
+      tasks: tasks,
+      taskCount: count,
+    });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
